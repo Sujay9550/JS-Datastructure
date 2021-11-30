@@ -101,3 +101,115 @@ const {
 
 console.log(o1, o2, o3);
 console.log(clo1, clo2, clo3);
+
+// Destructuring Arrays
+
+const arrayOne = [2, 3, 4];
+
+const a = arrayOne[0];
+const b = arrayOne[1];
+const c = arrayOne[2];
+
+console.log(a, b, c);
+
+const arrayTwo = [5, 6, 7];
+
+const [x, y, z] = arrayTwo;
+console.log(x, y, z);
+
+let [main, , , secondary] = restaurant.categories; // Use Commas to skip the next element in the array
+console.log(main, secondary);
+
+// Switching using destructuring
+[main, secondary] = [secondary, main];
+console.log(main, secondary);
+
+// Receive 2 return values from a function
+const [starter, mainCourse] = restaurant.order(2, 0);
+console.log(starter, mainCourse);
+
+// Nested Array Destructuring
+const arrayNested = [2, 3, [4, 5]];
+const [i, , j] = arrayNested;
+console.log(i, j);
+
+const arrayNestedNew = [6, 7, [8, 9]];
+const [k, l, [m, n]] = arrayNestedNew;
+console.log(k, l, m, n);
+
+// Default values
+const [p, q, r = 4] = [5, 6];
+console.log(p, q, r);
+
+// Spread Operators
+
+const arrayThree = [10, 11, 12];
+console.log(...arrayThree); // Will log the individual elements of array
+
+const spreadArray = [8, 9, ...arrayThree];
+console.log(spreadArray);
+
+// Examples
+
+console.log(restaurant.mainMenu);
+const newMenu = [...restaurant.mainMenu, "Gnocci"];
+console.log(newMenu);
+
+// Copy An Array
+
+const mainMenuCopy = [...restaurant.mainMenu];
+console.log(mainMenuCopy);
+
+// Join 2 Arrays
+
+const menuJoin = [...restaurant.starterMenu, ...restaurant.mainMenu];
+console.log(menuJoin);
+
+const string1 = "John";
+const letters = [...string1, "", "S"];
+console.log(letters);
+
+// object
+console.log(restaurant);
+
+// Copying Objects
+
+const restaurantCopy = { ...restaurant };
+restaurantCopy.name = "XYZ Restaurant";
+console.log(restaurantCopy);
+
+// Rest Patterns & Parameters
+
+const arrayFour = [1, 2, ...[3, 4]]; // This is spread because ... is after =
+console.log(arrayFour);
+
+const [h, kl, ...others] = [1, 2, 3, 4, 5]; // This is rest because ... is before =
+console.log(h, kl, others);
+
+// Examples
+console.log(restaurant.starterMenu);
+console.log(restaurant.mainMenu);
+
+const [f, g, ...remaining] = [
+  ...restaurant.starterMenu,
+  ...restaurant.mainMenu,
+];
+
+console.log(f, g, remaining);
+
+const { sat: saturday, ...weekdays } = restaurant.openingHours;
+console.log(saturday, weekdays);
+
+const add = function (...nnn) {
+  let total = 0;
+
+  for (let i = 0; i < nnn.length; i++) {
+    total = total + nnn[i];
+  }
+
+  console.log(total);
+};
+
+let data = [10, 20, 30];
+add(3, 4);
+add(...data);
