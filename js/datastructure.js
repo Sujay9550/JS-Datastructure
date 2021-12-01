@@ -213,3 +213,101 @@ const add = function (...nnn) {
 let data = [10, 20, 30];
 add(3, 4);
 add(...data);
+
+// Looping Arrays - for of Loop
+
+const menu1 = [...restaurant.starterMenu, ...restaurant.mainMenu];
+console.log(menu1);
+
+// General Method to get the Array Element values
+
+for (let j = 0; j < menu1.length; j++) {
+  console.log(menu1[j]);
+}
+
+// Using For - of Loop method to get the Array Element values
+
+for (const item of menu1) {
+  console.log(item);
+}
+
+// To get the index number of the array element/ also use destructuring concept
+for (const [i, el] of menu1.entries()) {
+  console.log(`${i + 1}: ${el}`);
+}
+
+console.log([...menu1.entries()]);
+
+// Optional Chaining
+
+// Without Optional Chaining
+
+if (restaurant.openingHours && restaurant.openingHours.mon) {
+  console.log(restaurant.openingHours.mon.open);
+}
+
+if (restaurant.openingHours && restaurant.openingHours.thu) {
+  console.log(restaurant.openingHours.thu.open);
+}
+
+// With Optional Chaining
+
+console.log(restaurant.openingHours.thu?.open);
+console.log(restaurant.openingHours?.fri?.open);
+console.log(restaurant.openingHours?.sat?.open);
+
+console.log(restaurant["openingHours"]);
+console.log(restaurant.openingHours["thu"]);
+
+// Examples
+
+const days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+
+for (const day of days) {
+  const open = restaurant.openingHours[day]?.open ?? "Closed";
+  console.log(`On ${day}, we are open at ${open}`);
+}
+
+// Optional chaining for Methods
+console.log(restaurant.order?.(0, 1) ?? "Method does not exist");
+console.log(restaurant.orderReceipe?.(0, 1) ?? "Method does not exist");
+
+// Optional chaining on Arrays
+const users = [{ name: "Steve", email: "steve@example.com" }];
+console.log(users[0]?.name ?? "User does not exist");
+
+// Looping Objects - Object Keys, Values, and Entries
+
+// Property Names
+const restaurantProperties = Object.keys(restaurant);
+console.log(restaurantProperties);
+
+const properties = Object.keys(restaurant.openingHours);
+console.log(properties);
+
+let stringName = `We are open on ${properties.length} days: `;
+
+for (const day of properties) {
+  stringName += `${day}, `;
+}
+console.log(stringName);
+
+// Property Values
+const restaurantValues = Object.values(restaurant);
+console.log(restaurantValues);
+
+const values = Object.values(restaurant.openingHours);
+console.log(values);
+
+// Entries = Property Names + Property Values
+
+const entries = Object.entries(openingHours);
+console.log(entries);
+
+for (const xe of entries) {
+  console.log(xe);
+}
+
+for (const [key, { open, close }] of entries) {
+  console.log(`On ${key} we are open at ${open} and close at ${close}`);
+}
