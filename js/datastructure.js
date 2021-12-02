@@ -311,3 +311,541 @@ for (const xe of entries) {
 for (const [key, { open, close }] of entries) {
   console.log(`On ${key} we are open at ${open} and close at ${close}`);
 }
+
+// Destructuring Exercises
+
+// Q1 Write a function called displayName() that takes an object as an argument and prints the person's first and last name.
+// Use object destructuring in the function argument. And also, use template strings when printing the first and last name.
+
+const person = {
+  first: "John",
+  last: "Smith",
+  job: "Developer",
+  location: "USA",
+};
+
+const displayName = ({ first, last }) => {
+  return console.log(`Your Full Name is: ${first} ${last}`);
+};
+
+displayName(person);
+
+const { first, last, ...others1 } = person;
+console.log(first);
+console.log(last);
+console.log(others1);
+
+const personName = Object.keys(person);
+console.log(personName);
+
+const personValue = Object.values(person);
+console.log(personValue);
+
+const personEntries = Object.entries(person);
+console.log(personEntries);
+
+for (const pe of personEntries) {
+  console.log(pe);
+}
+
+for (const [i, j] of personEntries) {
+  console.log(`${i}: ${j}`);
+}
+
+//  Create a function named goToSecondClass() that accepts a destructured object as a parameter.
+// The parameter extracts the "secondHour" property of the object. The function should return this statement: "Time to go to {property_value} class!"
+const myClasses = {
+  firstHour: "Ethics",
+  secondHour: "Programming",
+  thirdHour: "Biology",
+};
+
+const gotToSecondClass = ({ secondHour }) => {
+  console.log(`Time to go to ${secondHour} class.`);
+};
+
+gotToSecondClass(myClasses);
+
+const className = Object.keys(myClasses);
+console.log(className);
+
+const classValue = Object.values(myClasses);
+console.log(classValue);
+
+const classEntries = Object.entries(myClasses);
+console.log(classEntries);
+
+for (const [u, v] of classEntries) {
+  console.log(`${u}: ${v}`);
+}
+
+//Using array destructuring assign the first 2 elements to firstColor and secondColor variables and assign the remaining elements to otherColors variable.
+// Display the values of these 3 variables.
+let colors = ["white", "blue", "yellow", "black", "red", "green"];
+
+const [firstColor, secondColor, ...otherColor] = colors;
+console.log(firstColor, secondColor, otherColor);
+
+// Array Destructuring
+// To extract values from an array using array destructuring assignment, perform the following steps:
+
+// Create an array with three values, 1, 2, and 3, and save it into a variable called data1.
+// Destructure the first array value into a variable called aA. Skip the second value of the array.
+// Destructure the third value into a variable called bB.
+// Attempt to destructure a fourth value into a variable called cC and provide a default value of 4.
+// Log the value of all of the variables.
+
+const data1 = [1, 2, 3];
+
+const [aA, , bB, cC = 4] = data1;
+console.log(aA, bB, cC);
+
+// Object Destructuring
+// To extract data from an object by using object destructuring concepts, perform the following steps:
+
+// Create an object with the fields f1, f2, and f3. Set the values to v1, v2, and v3, respectively. Save the object into the data2 variable.
+// Destructure the f1 property into a variable named f1. Destructure the f2 property into a variable named field2.
+// Destructure the property f4 into a variable named f4 and provide a default value of v4.
+// Log the variables that are created.
+
+const data2 = { f1: "v1", f2: "v2", f3: "v3" };
+const { f1, f2: field2, f4 = "v4" } = data2;
+console.log(f1, field2, f4);
+
+// Nested Destructuring
+// To destructure values from an array that's nested inside an object using the concept of nested destructuring, perform the following steps:
+
+// Create an object with a property, arr, that is, set to an array containing the values 1, 2, and 3. Save the object into the data3 variable.
+
+// Destructure the second value of the array into a variable by doing the following:
+// Destructure the arr property from the object and save it into a new variable called v2, which is the array. Replace v2 with array destructuring.
+// In the array destructuring, skip the first element. Save the second element into a variable called v2.
+// Log the variables
+
+const data3 = { arr: [1, 2, 3] };
+const {
+  arr: [, v2],
+} = data3;
+console.log(v2);
+
+const courseCatalogMetadata = [
+  {
+    title: "Linear Algebra II",
+    description: "Advanced linear algebra.",
+    texts: [
+      {
+        author: "James Smith",
+        price: 120,
+        ISBN: "912-6-44-578441-0",
+      },
+    ],
+  },
+];
+
+console.log(courseCatalogMetadata);
+
+const [course] = courseCatalogMetadata;
+console.log(course);
+
+// const { texts: textbooks } = course;
+// console.log(textbooks);
+
+// const [textbook] = textbooks;
+// console.log(textbook);
+
+// const { ISBN } = textbook;
+// console.log(ISBN);
+
+const [{ texts: textbooks }] = courseCatalogMetadata;
+const [
+  {
+    texts: [textbook],
+  },
+] = courseCatalogMetadata;
+const [
+  {
+    texts: [{ ISBN }],
+  },
+] = courseCatalogMetadata;
+
+console.log(textbooks);
+console.log(textbook);
+console.log(ISBN);
+
+// Short Examples
+// 1.
+let numbers = [10, 20, 30];
+[numbers[1], numbers[2]] = [numbers[2], numbers[1]];
+
+console.log(numbers);
+
+// 2.
+let object1 = {
+  numbersA: {
+    xx: 1,
+    yy: 2,
+  },
+};
+
+console.log(object1);
+
+const { xx, yy } = object1.numbersA;
+
+console.log(xx, yy);
+
+// 3. Swap Array Numbers using destructuring
+const arr = [10, 20];
+console.log(arr);
+[arr[0], arr[1]] = [arr[1], arr[0]];
+console.log(arr);
+
+// 4. Write a function called raceResults which accepts a single array argument. It should return an object with the keys first, second, third, and rest.
+
+// first: the first element in the array
+// second: the second element in the array
+// third: the third element in the array
+// rest: all other elements in the array
+// Write a one line function to make this work using
+// An arrow function
+// Destructuring
+// ‘Enhanced’ object assignment (same key/value shortcut)
+
+const raceResults = ([first, second, third, ...rest]) => ({
+  first,
+  second,
+  third,
+  rest,
+});
+
+raceResults(["Tom", "Margaret", "Allison", "David", "Pierre"]);
+console.log(raceResults(["Tom", "Margaret", "Allison", "David", "Pierre"]));
+
+// 5. To find the value of nested array/objects
+const data4 = {
+  valid: true,
+  products: [
+    {
+      item: "Awesome shoe",
+      price: 19.99,
+      inStore: ["Regent Street", "Oxford Street", "Harrods"],
+    },
+    {
+      item: "Fave shirt",
+      price: 12.99,
+      inStore: ["Regent Street"],
+    },
+  ],
+};
+
+console.log(data4);
+
+const { products: productList } = data4;
+console.log(productList);
+
+const {
+  products: [product1, product2],
+} = data4;
+console.log(product1, product2);
+
+const {
+  products: [
+    { item: item1, price: price1, inStore: inStore1 },
+    { item: item2, price: price2, inStore: inStore2 },
+  ],
+} = data4;
+console.log(item1, price1, inStore1);
+console.log(item2, price2, inStore2);
+
+const {
+  products: [
+    {
+      inStore: [mm, nn, oo],
+    },
+    {
+      inStore: [pp],
+    },
+  ],
+} = data4;
+console.log(mm, nn, oo, pp);
+// const { products: productList } = data4;
+// console.log(productList);
+
+// const [product1, product2] = productList;
+// console.log(product1, product2);
+
+// const { item: item1, price: price1, inStore: inStore1 } = product1;
+// console.log(item1, price1, inStore1);
+
+// const { item: item2, price: price2, inStore: inStore2 } = product2;
+// console.log(item2, price2, inStore2);
+
+// const [mm, nn, oo] = inStore1;
+// console.log(mm, nn, oo);
+
+// const [pp] = inStore2;
+// console.log(pp);
+
+// const [product1, product2] = products;
+// console.log(product1, product2);
+
+// const { item: item1, price: price1, inStore: inStore1 } = product1;
+// console.log(item1, price1, inStore1);
+
+// const { item: item2, price: price2, inStore: inStore2 } = product2;
+// console.log(item2, price2, inStore2);
+
+// const [mm, nn, oo] = inStore1;
+// console.log(mm, nn, oo);
+
+// const [pp] = inStore2;
+// console.log(pp);
+
+// 6. To find the value of nested array/objects
+
+const teams = [
+  {
+    firstName: "Steve",
+    lastName: "Smith",
+    fullName: "Steve Smith",
+    friends: ["Mark", "John", "Stephen"],
+    hobbies: ["Music", "Movies", "Travel"],
+  },
+
+  {
+    firstName: "Kane",
+    lastName: "Williamson",
+    fullName: "Kane Williamson",
+    friends: ["James", "Joseph", "Mitchelle"],
+    hobbies: ["Music", "Painting"],
+  },
+];
+
+console.log(teams);
+
+const [person1, person2] = teams;
+console.log(person1);
+console.log(person2);
+
+const [
+  {
+    firstName: firstName1,
+    lastName: lastName1,
+    fullName: fullName1,
+    friends: friends1,
+    hobbies: hobbies1,
+  },
+  {
+    firstName: firstName2,
+    lastName: lastName2,
+    fullName: fullName2,
+    friends: friends2,
+    hobbies: hobbies2,
+  },
+] = teams;
+
+console.log(firstName1, lastName1, fullName1, friends1, hobbies1);
+console.log(firstName2, lastName2, fullName2, friends2, hobbies2);
+
+const [
+  {
+    friends: [fr1, fr2, fr3],
+    hobbies: [hb1, hb2, hb3],
+  },
+  {
+    friends: [fr4, fr5, fr6],
+    hobbies: [hb4, hb5],
+  },
+] = teams;
+
+console.log(fr1, fr2, fr3);
+console.log(hb1, hb2, hb3);
+
+console.log(fr4, fr5, fr6);
+console.log(hb4, hb5);
+
+// const [person1, person2] = teams;
+// console.log(person1);
+// console.log(person2);
+
+// const {
+//   firstName: firstName1,
+//   lastName: lastName1,
+//   fullName: fullName1,
+//   friends: friends1,
+//   hobbies: hobbies1,
+// } = person1;
+// console.log(firstName1, lastName1, fullName1, friends1, hobbies1);
+
+// const [fr1, fr2, fr3] = friends1;
+// console.log(fr1, fr2, fr3);
+
+// const [hb1, hb2, hb3] = hobbies1;
+// console.log(hb1, hb2, hb3);
+
+// const {
+//   firstName: firstName2,
+//   lastName: lastName2,
+//   fullName: fullName2,
+//   friends: friends2,
+//   hobbies: hobbies2,
+// } = person2;
+// console.log(firstName2, lastName2, fullName2, friends2, hobbies2);
+
+// const [fr4, fr5, fr6] = friends2;
+// console.log(fr4, fr5, fr6);
+
+// const [hb4, hb5] = hobbies2;
+// console.log(hb4, hb5);
+
+const data5 = [{ subitem: "pen" }, { subitem: "book" }];
+console.log(data5);
+
+const [sub1, sub2] = data5;
+console.log(sub1, sub2);
+
+const [{ subitem: subitem1 }, { subitem: subitem2 }] = data5;
+console.log(subitem1, subitem2);
+
+// const [sub1, sub2] = data5;
+// console.log(sub1, sub2);
+
+// const { subitem: subitem1 } = sub1;
+// console.log(subitem1);
+
+// const { subitem: subitem2 } = sub2;
+// console.log(subitem2);
+
+const teamsNew = [
+  {
+    firstName: "David",
+    lastName: "Warner",
+    fullName: "David Warner",
+    friends: [
+      { friendsFirst: "Shane", friendsLast: "Watson" },
+      { friendsFirst: "Mitchelle", friendsLast: "Johnson" },
+    ],
+  },
+
+  {
+    firstName: "Kane",
+    lastName: "Williamson",
+    fullName: "Kane Williamson",
+    friends: [
+      { friendsFirst: "Trent", friendsLast: "Boult" },
+      { friendsFirst: "Tim", friendsLast: "Southee" },
+    ],
+  },
+];
+
+const [
+  {
+    friends: [
+      { friendsFirst: friendsFirst1, friendsLast: friendsLast1 },
+      { friendsFirst: friendsFirst2, friendsLast: friendsLast2 },
+    ],
+  },
+  {
+    friends: [
+      { friendsFirst: friendsFirst3, friendsLast: friendsLast3 },
+      { friendsFirst: friendsFirst4, friendsLast: friendsLast4 },
+    ],
+  },
+] = teamsNew;
+
+console.log(friendsFirst1, friendsLast1);
+console.log(friendsFirst2, friendsLast2);
+console.log(friendsFirst3, friendsLast3);
+console.log(friendsFirst4, friendsLast4);
+
+const friendsList = teamsNew[0].friends;
+console.log(friendsList);
+
+friendsList.forEach((el) => {
+  const friendsFullName = el.friendsFirst + " " + el.friendsLast;
+  console.log(`Your Full Name is ${friendsFullName}`);
+});
+
+// String Destructuring
+const [u, v, w] = "Mark";
+console.log(u, v, w);
+
+// Assign to anything at the left-side
+let user1 = {};
+
+[user1.fname, user1.lname] = ["Johny", "Walker"];
+console.log(user1);
+
+// Looping with .entries()
+
+const user2 = {
+  userFirst: "Tom",
+  userLast: "Hanks",
+  age: 50,
+};
+
+console.log(user2);
+
+const userKeys = Object.keys(user2);
+console.log(userKeys);
+
+const userValues = Object.values(user2);
+console.log(userValues);
+
+const userEntries = Object.entries(user2);
+console.log(userEntries);
+
+for (let [userKey, userValue] of userEntries) {
+  console.log(`${userKey}: ${userValue}`);
+}
+
+// Smart function parameters
+let options = {
+  title: "My menu",
+  width: 400,
+  height: 200,
+  optionitems: ["Pens", "Books"],
+};
+
+console.log(options);
+
+const makeMenu = ({
+  title,
+  width,
+  height,
+  optionitems: [opitem1, opitem2],
+}) => {
+  console.log(title, width, height, opitem1, opitem2);
+};
+
+makeMenu(options);
+
+// To find the maximum Salary & Person
+let salaries = {
+  John: 100,
+  Pete: 300,
+  Mary: 250,
+};
+
+const salaryKeys = Object.keys(salaries);
+console.log(salaryKeys);
+
+const salaryValues = Object.values(salaries);
+console.log(salaryValues);
+
+const salaryEntries = Object.entries(salaries);
+console.log(salaryEntries);
+
+const topSalary = (salaries) => {
+  let maxSalary = 0;
+  let maxName = null;
+  for (const [salaryName, salaryValue] of salaries) {
+    if (maxSalary < salaryValue) {
+      maxSalary = salaryValue;
+      maxName = salaryName;
+    }
+  }
+  console.log(maxName, maxSalary);
+  return maxName, maxSalary;
+};
+
+topSalary(salaryEntries);
